@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cosine } from "./cosine";
-import { client } from "../../db";
+import { client, responseTemplate } from "../../db";
 import { randomUUID } from "crypto";
 
 type CalculateHistory = {
@@ -92,7 +92,21 @@ export async function POST(req: NextRequest) {
   );
 
   return NextResponse.json(
-    { maximum_index, maximum_similarity, diagnosis, name, id: new_id },
-    { status: 200 }
+    responseTemplate<
+      {
+        diagnosis: string;
+        maximum_index: number;
+        maximum_similarity: number;
+        name: string;
+        id: string;
+      },
+      null
+    >(
+      201,
+      "Created",
+      { maximum_index, maximum_similarity, diagnosis, name, id: new_id },
+      null
+    ),
+    { status: 201 }
   );
 }

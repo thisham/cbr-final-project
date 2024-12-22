@@ -1,0 +1,29 @@
+@base_url = http://localhost:3000/api
+
+### GET /histories
+GET {{base_url}}/v1/histories HTTP/1.1
+
+### POST /analyzes
+POST {{base_url}}/v1/analyzes HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "Patient 51",
+  "questions": [
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+    1, 1, 1, 1
+  ]
+}
+
+### PATCH /analyzes/:id
+PATCH {{base_url}}/v1/analyzes/d3c5b51e-f4d1-471f-a747-617ab1c035c0/correct-diagnosis HTTP/1.1
+Content-Type: application/json
+
+{
+  "diagnose": "Gangguan Komunikasi"
+}
+
+### GET /questions
+GET {{base_url}}/v1/questions HTTP/1.1
+

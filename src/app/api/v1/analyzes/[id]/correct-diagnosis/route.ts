@@ -1,5 +1,5 @@
 import { client } from "@modules/app/api/db";
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 export async function PATCH(
   req: NextRequest,

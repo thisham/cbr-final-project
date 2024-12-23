@@ -8,10 +8,10 @@ export async function PATCH(
   const id = params.id;
   const { diagnosis } = await (req.json() as Promise<{ diagnosis: string }>);
 
-  await client.query(
-    "UPDATE samples SET correct_diagnosis = $1 WHERE id = $2",
-    [diagnosis, id]
-  );
+  await client.query("UPDATE samples SET diagnosis = $1 WHERE id = $2", [
+    diagnosis,
+    id,
+  ]);
 
-  return NextResponse.json({}, { status: 204 });
+  return new Response(null, { status: 204 });
 }
